@@ -1,12 +1,10 @@
-import os
 import re
+import argparse
 import requests
 from utils import *
 import pandas as pd
 from CONFIG import *
 from pyquery import PyQuery as pq
-NOWFILEPATH=os.path.dirname(__file__)
-PARENTFILEPATH=os.path.dirname(os.path.dirname(__file__))
 def search(KeyWords,saveFile=False):
     InfoList=[]
     nowPage = 0
@@ -71,5 +69,7 @@ def getInfo(html,url):
             InfoColumns.REFERENCED:referenced
         })
     return resultList
-#KeyWords='Curie temperature'
-#result=search(KeyWords,saveFile=True)
+parser=argparse.ArgumentParser()
+parser.add_argument('--keyword',default='',type=str,help='搜索的关键字')
+args=parser.parse_args()
+search(args.keyword,saveFile=True)

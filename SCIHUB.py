@@ -1,7 +1,3 @@
-import os
-import requests
-from utils import *
-from CONFIG import *
 from GoogleScholar import *
 from pyquery import PyQuery as pq
 def download(KeyWords):
@@ -45,4 +41,7 @@ def download(KeyWords):
             index += 1
     else:
         print('获取论文信息失败，请检查网络或重设cookie')
-download('Curie temperature')
+parser=argparse.ArgumentParser()
+parser.add_argument('--keyword',default='',type=str,help='搜索的关键字')
+args=parser.parse_args()
+download(args.keyword)
